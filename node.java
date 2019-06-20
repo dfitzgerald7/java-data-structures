@@ -6,6 +6,7 @@ public class Node {
 
     Node(int num) {
         id = num;
+        next = null;
     }
 }
 
