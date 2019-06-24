@@ -6,7 +6,7 @@ public class LinkedList {
         head = node;
     }
     
-    Node getNode(){
+    Node getLast(){
         Node current = head;
         while (current.next != null){
             current = current.next;
@@ -15,14 +15,19 @@ public class LinkedList {
     }
 
     void push(Node node){
-        Node current = this.getNode();
+        Node current = this.getLast();
         current.next = node;
     }
 
     
     Node pop() {
-        Node current = this.getLast();
-
+        Node current = head;
+        while (current.next.next != null){
+            current = current.next;
+        }
+        Node last = current.next; 
+        current.next = null;
+        return last;
     }
 
     void unshift(Node node){
@@ -30,9 +35,12 @@ public class LinkedList {
         head = node; 
     }
 
-    // Node shift() {
-    //     return ;
-    // }
+    Node shift() {
+        Node temp = head;
+        head.next = null;
+        head = temp.next;
+        return temp;
+    }
 
     void print() {
         Node current = head;
@@ -68,6 +76,14 @@ class LinkedListTest {
         System.out.println("Unshift");
         Node fifth = new Node(5);
         myList.unshift(fifth);
+        myList.print();
+
+        System.out.println("Shift");
+        myList.shift();
+        myList.print();
+
+        System.out.println("Pop");
+        myList.pop();
         myList.print();
     }
 }
